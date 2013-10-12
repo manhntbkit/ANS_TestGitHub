@@ -1,4 +1,0 @@
-Hi {!Change_Request__c.CreatedBy} ,
-Your change request  {!Change_Request__c.Description__c}  for Project 
-{!Project__c.Project_Name__c} has been  rejected.
-Thanks,
