@@ -1,0 +1,56 @@
+<apex:page standardController="Change_Request__c" extensions="ChangeRequestFlow2Controller" tabstyle="Opportunity">
+<apex:form >
+<apex:pageBlock >
+    <apex:outputLabel ><h1>Please choose the following participants: </h1></apex:outputLabel>
+    <apex:pageMessages />
+    <apex:pageBlockTable value="{!ProjectParticipantWrapperList}" var="ppw">
+       <apex:column ><apex:facet name="header">
+            <apex:inputCheckbox onclick="checkAll(this,'checkedone')"/>
+       </apex:facet>
+       <apex:inputCheckbox value="{!ppw.selected}" id="checkedone"/></apex:column>
+       <apex:column value="{!ppw.projParticipant.Name}"/>
+       <apex:column value="{!ppw.projParticipant.Account_ID__c}"/>
+       <apex:column value="{!ppw.projParticipant.Area_Of_Expertise__c}"/>
+       <apex:column value="{!ppw.projParticipant.Project_Tier__c}"/>
+    </apex:pageBlockTable>
+    <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Add" action="{!buildNewCRParticipants}"/>
+                    
+    </apex:pageBlockButtons>
+    
+</apex:pageBlock>
+
+<apex:pageBlock rendered="{!NOT(NextStep)}">
+     <apex:outputLabel ><h1>Edit the chosen participants: </h1></apex:outputLabel>
+    <apex:pageMessages />
+    <apex:pageBlockButtons location="bottom">
+    <apex:commandButton value="Save" action="{!save}"/>
+    </apex:pageBlockButtons>
+    <apex:pageBlockTable value="{!NewCrParticipantList}" var="crp">
+    <apex:column value="{!crp.Account__c}"/>
+    <apex:column headerValue="Contact">
+    <apex:inputField value="{!crp.Contact__c}"/>
+    </apex:column>
+    <apex:column headerValue="Participant Role">
+    <apex:inputField value="{!crp.Role__c}"/>
+    </apex:column>
+    </apex:pageBlockTable>
+</apex:pageBlock>
+
+</apex:form>
+<apex:relatedList id="cr_participants" list="CR_Participants__r"/>   
+
+<script type="text/javascript">
+    function checkAll(cb,cbid)
+        {
+            var inputElem = document.getElementsByTagName("input");                    
+            for(var i=0; i<inputElem.length; i++)
+            {            
+                 if(inputElem[i].id.indexOf(cbid)!=-1){                                       
+                    inputElem[i].checked = cb.checked;
+                }
+            }
+        }
+</script>
+
+</apex:page>

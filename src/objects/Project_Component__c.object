@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Components of the Project - It can include Major Sub-assemblies, Assemblies, Raw Material Supplier types here - This is used to categorize the sub components with a project</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Chatter_Group_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Chatter_Group__r.Supplier_Network_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Chatter Group ID</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Chatter_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Chatter Group for this component - Each Component Supplier will be part of one or more Chatter Group</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Chatter Group for this component - Each Component Supplier will be part of one or more Chatter Group</inlineHelpText>
+        <label>Chatter Group</label>
+        <referenceTo>Participant_Group__c</referenceTo>
+        <relationshipLabel>Project Components</relationshipLabel>
+        <relationshipName>Project_Components</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Chatter_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>Chatter_Group__r.Chatter_Link__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Chatter Link</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Component_Name__c</fullName>
+        <description>Name of the Component</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of the Component</inlineHelpText>
+        <label>Component Name</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Component_Rank__c</fullName>
+        <description>Importance Ranking ( a measure to know the criticality of the component )</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Importance Ranking ( a measure to know the criticality of the component )</inlineHelpText>
+        <label>Component Rank</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Component_Source__c</fullName>
+        <description>Supplier of the Component can be either OEM/Major Assembly suppliers/Sub Assembly Suppliers/Parts Suppliers/Raw Materials</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Supplier of the Component can be either OEM/Major Assembly suppliers/Sub Assembly Suppliers/Parts Suppliers/Raw Materials</inlineHelpText>
+        <label>Component Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>OEM</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Major Assembly Suppliers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub Assembly Suppliers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Parts Suppliers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Raw Material Suppliers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>Project Component</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Component_Name__c</columns>
+        <columns>Chatter_Group__c</columns>
+        <columns>Chatter_Link__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PCID{000000}</displayFormat>
+        <label>Project Component ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Project Components</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Component_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Component_Source__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Chatter_Group__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Component_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Component_Source__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Chatter_Group__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Change Request Step</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Alternate_CR_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Alternate Step for any Decision Points</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Alternate Step for any Decision Points</inlineHelpText>
+        <label>Alternate CR Step</label>
+        <referenceTo>CR_Step__c</referenceTo>
+        <relationshipLabel>CR Steps (Alternate CR Step)</relationshipLabel>
+        <relationshipName>Alternate_CR_Steps</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Change_Request__c</fullName>
+        <externalId>false</externalId>
+        <label>Change Request</label>
+        <referenceTo>Change_Request__c</referenceTo>
+        <relationshipLabel>CR Steps</relationshipLabel>
+        <relationshipName>CR_Steps</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>Comments Entered upon completion of the process</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments Entered upon completion of the process</inlineHelpText>
+        <label>Comments</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Criticality__c</fullName>
+        <description>The important of a CR Step 
+
+Range from 1 ( highest) to 5 ( lowest)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The important of a CR Step</inlineHelpText>
+        <label>Criticality</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Dependent_CR_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Dependent CR Step -</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Dependent CR Step -</inlineHelpText>
+        <label>Dependent CR Step</label>
+        <referenceTo>CR_Step__c</referenceTo>
+        <relationshipLabel>Dependent CR Steps</relationshipLabel>
+        <relationshipName>Dependent_CR_Steps</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Feed_Text__c</fullName>
+        <description>Any Text Entered here will be used for Chatter Feed along with the Activity Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Any Text Entered here will be used for Chatter Feed along with the Activity Name</inlineHelpText>
+        <label>Feed Text</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Next_CR_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Next CR Step - will be null for any Terminal Step</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Next CR Step - will be null for any Terminal Step</inlineHelpText>
+        <label>Next CR Step</label>
+        <referenceTo>CR_Step__c</referenceTo>
+        <relationshipLabel>Next CR Step</relationshipLabel>
+        <relationshipName>CR_Steps</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Process_Owner__c</fullName>
+        <description>Process Workflow Owner - in the Master Change Process from CSC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Process Workflow Owner - in the Master Change Process from CSC</inlineHelpText>
+        <label>Process Owner</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Client</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prime Commercial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prime Engineering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub Commercial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub Engineering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Process_Step_Description__c</fullName>
+        <description>short Description of the Process Step</description>
+        <externalId>false</externalId>
+        <inlineHelpText>short Description of the Process Step</inlineHelpText>
+        <label>Process Step Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Process_Step_Name__c</fullName>
+        <description>Short Name of the CR Process Step</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Short Name of the Process Step</inlineHelpText>
+        <label>Process Step Name</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finished</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Step_Number__c</fullName>
+        <description>A Sequence Number denoting the progress of the CR</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A sequence Number denoting the progress of the CR</inlineHelpText>
+        <label>Step Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Step_Type__c</fullName>
+        <description>Each Process Steps can be Activity, Decision Point. Start, Terminal or Data collection point</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Each Process Steps can be Activity, Decision Point. Start, Terminal or Data collection point</inlineHelpText>
+        <label>Step Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Starting Step</fullName>
+                <color>#000099</color>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Activity Step</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Decision Point</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Terminal Step</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Data Collection Point</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>CR Step</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Change_Request__c</columns>
+        <columns>Process_Owner__c</columns>
+        <columns>Process_Step_Name__c</columns>
+        <columns>Step_Type__c</columns>
+        <columns>Next_CR_Step__c</columns>
+        <columns>Dependent_CR_Step__c</columns>
+        <columns>Alternate_CR_Step__c</columns>
+        <columns>Status__c</columns>
+        <columns>Process_Step_Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CRP#{00000}</displayFormat>
+        <label>CR Process ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01Id0000000zegaEAA_00Nd0000006sQQHEA2</fullName>
+        <active>true</active>
+        <field>CR_Participant__c.CR_Steps_Working_On__c</field>
+        <filterItems>
+            <field>CR_Step__c.Change_Request__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Chage_Request__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>CR_Step__c.Status__c</field>
+            <operation>contains</operation>
+            <value>Started</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>CR Participant_CR Steps Working On</name>
+        <sourceObject>CR_Participant__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>CR Steps</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Import_steps_from_templates</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Import steps from templates</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>https://c.na14.visual.force.com/apex/CRStepTemplateImport?id={!Change_Request__c.Id}</url>
+    </webLinks>
+</CustomObject>

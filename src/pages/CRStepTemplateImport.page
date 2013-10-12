@@ -1,0 +1,22 @@
+<apex:page standardController="Change_Request__c" extensions="ChangeRequestController">
+<apex:form >
+
+<apex:pageblock id="allCRTemp" title="Available CR Step Templates">
+               <apex:pageblocktable id="allCRTemp" value="{!CRStepTemplates}" var="temp">               
+                    <apex:column headervalue="Action" width="100">                                                             
+                        <apex:commandLink value="Import  " action="{!importTemplate}">                 
+                            <apex:param value="{!temp.Id}" name="tempId" />
+                        </apex:commandLink> | 
+                        <apex:commandLink value="  View" action="{!viewTemplate}">                 
+                            <apex:param value="{!temp.Id}" name="tempId" />
+                        </apex:commandLink>                                      
+                    </apex:column>
+                                           
+                    <apex:column headervalue="Template Name">
+                        <apex:outputfield value="{!temp.Name}">
+                    </apex:outputfield></apex:column>                    
+                </apex:pageblocktable>
+</apex:pageblock>   
+
+</apex:form>
+</apex:page>

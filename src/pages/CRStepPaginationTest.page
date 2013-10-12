@@ -1,0 +1,22 @@
+<apex:page standardController="CR_Step__c" recordSetVar="crSteps" tabStyle="Opportunity">
+    <apex:form >
+        <apex:pageBlock title="My Content" mode="edit" rendered="{!$ObjectType.CR_Step__c.accessible}">
+              
+        <apex:pageblockTable value="{!crSteps}" var="step">
+            <apex:column value="{!step.Name}"/>
+           <apex:column value="{!step.Process_Step_Name__c}"/> 
+           <apex:column value="{!step.Step_Type__c}"/>         
+        </apex:pageblockTable>
+        
+        <apex:panelGrid columns="2">
+            <apex:commandLink action="{!previous}">Previous</apex:commandlink>
+            <apex:commandLink action="{!next}">Next</apex:commandlink>
+        </apex:panelGrid>
+    
+        </apex:pageBlock>
+        <apex:pageBlock rendered="NOT({!$ObjectType.CR_Step__c.accessible})">
+            <p>Sorry, but you cannot see the data because you do not have access to the object.</p>
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>
