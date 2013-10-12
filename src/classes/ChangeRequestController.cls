@@ -70,6 +70,28 @@ public class ChangeRequestController {
         }        
     }
     
+    /*
+    * Manh: Make a copy of 'countOwerTypeSteps' functions above .
+    */
+    
+    private void countOwerTypeSteps_Copy(List<CR_Step__c> crStepList) {
+        for(CR_Step__c step: crStepList) {
+            if (step.Process_Owner__c == 'Client')  
+                numOfClientStep++;
+            else if (step.Process_Owner__c == 'Prime Commercial')  
+                numOfPCStep++;
+            else if (step.Process_Owner__c == 'Prime Engineering')  
+                numOfPEStep++;
+            else if (step.Process_Owner__c == 'SPM')  
+                numOfSPMStep++;
+            else if (step.Process_Owner__c == 'Sub Commercial')  
+                numOfSCStep++;
+            else if (step.Process_Owner__c == 'Sub Engineering')  
+                numOfSEStep++;   
+                                
+        }        
+    }
+    
     public integer getNumOfClientStep() {
          return numOfClientStep; 
     }
