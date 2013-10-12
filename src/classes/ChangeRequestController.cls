@@ -2,15 +2,6 @@
 * This controller is used as the extension in drawing CR Steps Diagram, creating a list of cr participants,
 * and a list of cr components
 *
-* Author: Thanh Mai = tmai8@csc.com
-* Date: 01/15/2013
-* 
-* Edited on 01/23/2013
-* @by Han Nguyen 
-* 
-* Edited: Manh Nguyen = manhnt.bkit@gmail.com
-* Notes: add migrate function.
-*
 */
 public class ChangeRequestController {
 
