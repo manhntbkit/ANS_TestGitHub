@@ -1,0 +1,63 @@
+<apex:page controller="AccountController" standardStyleSheets="false" showHeader="false" cache="false">
+    
+    <apex:stylesheet value="{!URLFOR($Resource.PajinateCSS)}" />
+    
+    <apex:form >
+    <apex:pageBlock title="Pagination with Next & Previous action in controller" rendered="{!IF(accounts.size > 0 , true , false)}">
+           
+           <!-- apply paging salesforce native -->
+           <apex:outputPanel layout="block" styleClass="pSearchShowMore" id="otpNav">
+              Total Records Found: 
+              <apex:outputText rendered="{!IF(StandardCon.resultSize==10000,true,false)}">
+                  10000 +
+              </apex:outputText>
+              <apex:outputText rendered="{!IF(StandardCon.resultSize < 10000,true,false)}">
+                  {!StandardCon.resultSize}
+              </apex:outputText>
+                  <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(StandardCon.HasPrevious)}"/>
+                  <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!StandardCon.HasPrevious}"/>
+                  <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!StandardCon.HasPrevious}"/>
+                  
+                  <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(StandardCon.HasPrevious)}">Previous Page
+                  </apex:outputPanel>         
+                  &nbsp;({!IF(StandardCon.PageNumber == 1,1,((StandardCon.PageNumber -1) * StandardCon.PageSize)+1)}-{!IF(StandardCon.resultSize < StandardCon.PageSize,StandardCon.resultSize,StandardCon.PageNumber * StandardCon.pageSize)})&nbsp;
+                  <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(StandardCon.HasNext)}">Next Page</apex:outputPanel>         
+                  <apex:commandLink title="Next Page" value="Next Page" rendered="{!StandardCon.HasNext}" action="{!Next}"/>&nbsp;
+                  <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!StandardCon.HasNext}"/>
+                  <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(StandardCon.HasNext)}"/>          
+           </apex:outputPanel>
+           
+           
+           <apex:pageBlockSection title="Account Object" columns="1" id="pbs">    
+                    <!-- Sortable for Name column -->                
+                    <apex:dataTable value="{!accounts}" var="account" id="accountTable" rows="1000">
+                        <!--
+                        <apex:column >
+                            <apex:facet name="header">Name</apex:facet>
+                            <apex:outputField value="{!account.name}"/>
+                        </apex:column>
+                        -->
+                        <apex:column >
+                            <apex:facet name="header">   
+                                <apex:commandLink action="{!ViewData}" value="Account Name{!IF(sortExpression=='name',IF(sortDirection='ASC','▼','▲'),'')}" id="cmdSort">
+                                    <apex:param value="name" name="column" assignTo="{!sortExpression}" ></apex:param>
+                                </apex:commandLink>
+                            </apex:facet>
+                             <apex:outputLink value="/{!account.Id}" target="_blank">{!account.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Rating</apex:facet>
+                            <apex:outputField value="{!account.rating}"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Annual Revenue</apex:facet>
+                            <apex:outputField value="{!account.annualRevenue}"/>
+                        </apex:column>                
+                    </apex:dataTable>
+                    
+          </apex:pageBlockSection>
+   </apex:pageBlock>
+   </apex:form>   
+            
+
+</apex:page>

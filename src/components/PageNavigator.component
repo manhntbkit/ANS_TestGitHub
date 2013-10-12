@@ -1,0 +1,43 @@
+<apex:component >
+    
+    <!-- 
+        Kien Nghe
+        Pagination for datatable
+        Date: Jan 21
+    -->
+    <script type="text/javascript" src="{!URLFOR($Resource.jQuery17)}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Pajinate_JS)}"></script>
+       
+    <!-- jQuery must load firstly -->   
+    
+    <apex:stylesheet value="{!URLFOR($Resource.PajinateCSS)}" />
+    
+    <apex:attribute name="tableId" type="string" required="true" description="data table id"/>       
+    <apex:attribute name="pageBlockSectionId" type="string" required="true" description="page block section"/>
+    
+    <script type="text/javascript">
+        
+        var tableId = '{!tableId}'; 
+        var tBodyId = tableId + ':tb'; 
+        var pbsId = '{!pageBlockSectionId}';  
+        
+        $.noConflict();
+        
+        jQuery(document).ready(function($){
+            
+            $(esc( pbsId )).pajinate({
+                item_container_id : esc( tBodyId ),
+                items_per_page : 5
+            });            
+            
+        }); 
+        
+        function esc(id) {  
+            
+            return '#' + id.replace(/(:|\.)/g,'\\\\$1');
+        }    
+    </script>
+                     
+    <div class="page_navigation"></div>
+    
+</apex:component>

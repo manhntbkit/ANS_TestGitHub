@@ -1,0 +1,103 @@
+<apex:page controller="CRStepsDiagramTestController" showHeader="false">
+    <apex:includeScript value="{!URLFOR($Resource.JointJS_Library, 'raphael.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.JointJS_Library, 'joint.min.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.JointJS_Library, 'joint.dia.min.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.JointJS_Library, 'joint.dia.fsa.min.js')}"/>
+     
+    <style type="text/css">
+td.odd {
+    background-color: #CC9999; color: black;
+}
+td.even{
+    background-color: #9999CC; color: black;
+}
+.rotate {
+
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+</style>    
+                
+        <table border="1">            
+            <apex:repeat value="{!processOwnerList}" var="processOwner">
+                <tr>
+                    <td class="rotate" height="200"> <apex:outputText value="{!processOwner}"/> </td>
+                    
+                    <td height="200" width="1000" class="even">
+                        <div id="owner_{!processOwner}"> </div>
+                        <script type="text/javascript" language="Javascript">     
+                            var positionY = 10;
+                            var positionX = 10;
+                            var maxWidth = 1000;
+                            var maxHeight = 200;
+                            var terminalY = maxHeight - 250;
+                            var terminalX = 10;
+
+                            Joint.paper("owner_{!processOwner}", maxWidth , maxHeight);
+                            var stepsDia= Joint.dia.fsa;
+                            var startStep= stepsDia.StartState.create({ 
+                                    position: {x: positionX, y: positionY }});
+                            var endStep= stepsDia.EndState.create({ position: {x: maxWidth, y: maxHeight } });
+                            var allSteps = new Array();
+                            var allStepOwner_{!processOwner}= new Array();
+                            
+                        <apex:repeat value="{!mapProcessOwner[processOwner]}" var="listCRStep">
+                            <apex:repeat value="{!listCRStep}" var="crStep">                            
+                                positionY += 20
+                                positionX += 40                            
+                                if ("Decision Point" == "{!crStep.Step_Type__c}") {
+                                //Decision Point
+                                step_{!crStep.Id}= stepsDia.State.create({ position: {x: positionX , y: positionY}, 
+                                        label: "{!crStep.Process_Step_Name__c}",
+                                        attrs: {stroke: "black", fill: "yellow"} });
+                                } else if ("Terminal Step" == "{!crStep.Step_Type__c}") {
+                                    terminalX += 150;
+                                    step_{!crStep.Id}= stepsDia.State.create({ position: {x: terminalX, y: terminalY}, 
+                                        label: "{!crStep.Process_Step_Name__c}",
+                                        attrs: {stroke: "black", fill: "white"} });
+                                    //Connect Ending Step to EndPoint
+                                    step_{!crStep.Id}.joint(endStep, stepsDia.arrow);
+                                
+                                } else {
+                                    //Activity Step
+                                    step_{!crStep.Id}= stepsDia.State.create({ position: {x: positionX , y: positionY}, 
+                                        label: "{!crStep.Process_Step_Name__c}",
+                                        attrs: {stroke: "black", fill: "white"} });
+                                }
+                                //allStepOwner{!processOwner}.push(step_{!crStep.Id});
+                                allStepOwner_{!processOwner}.push(step_{!crStep.Id});
+                                                                
+                            </apex:repeat>
+                        </apex:repeat>
+                        
+                        function ignoreSpaces(string) {
+                            var temp = "";
+                            string = '' + string;
+                            splitstring = string.split(" ");
+                            for(i = 0; i < splitstring.length; i++){
+                                temp += splitstring[i];
+                            }
+                            return temp;
+                        }
+                        </script>
+                    </td>
+                    
+                </tr>                
+            </apex:repeat>    
+        </table>
+        
+        
+</apex:page>
